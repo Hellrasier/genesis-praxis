@@ -33,7 +33,7 @@ const server = http.createServer()
 
 server.on('request', async (req, res) => {
     let {url, method} = req
-    console.log(`Received response from ${res.socket.remoteAddress}:${res.socket.remotePort}\n url: ${url}`)
+    console.log(`Received response from ${req.socket.localAddress}:${res.socket.localPort}\n url: ${url}`)
     const handler = api[url + '/' + method]
     if (!handler){
         res.statusCode = 404
