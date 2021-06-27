@@ -1,6 +1,5 @@
 require('dotenv').config()
 const https = require('https');
-console.log(process.env.CRYPTOCURR_TOKEN)
 
 module.exports = {
     getRate: (cryptoCurr, priceCurr) => new Promise((resolve, reject) => {
