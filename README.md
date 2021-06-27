@@ -49,7 +49,7 @@ Current Bitcoin currency rate is being taken from https://www.coinapi.io/
     Authorization: "68dd5aef0c**********************"
   }
   ```
-  With this query should provide headers with token to tell server that you are authorized.
+  With this query you should provide headers with token to tell server that you are authorized.
   
   Possible responses:
   + `200: {cryptoCurrency: "BTC", rate: *BTC rate in UAH*}`
