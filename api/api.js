@@ -3,7 +3,10 @@ const Security = require('./security');
 const cryptoCurrencies = require('./cryproCurrencies')
 
 
-const emailAlreadyExist = email => storage.get().length != 0 && storage.get().every(user => user.email == email)
+const emailAlreadyExist = email => {
+    let users_data = storage.get()
+    return users_data.length != 0 && users_data.every(user => user.email == email)
+}
 
 const isCorrectEmail = email => email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
 
@@ -24,7 +27,7 @@ const api = {
         if(emailAlreadyExist(email)){
             return {
                 body: `Error, user with this E-mail adress already exists`,
-                status: 400
+                status: 409
             }
         }
         const hashed_password = await Security.hashPassword(password)
