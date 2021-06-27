@@ -27,13 +27,15 @@ const getHeaders = req => {
         obj[req.rawHeaders[i]] = req.rawHeaders[i+1]
     }
     return obj
-}
+} 
+// parse Request Headers
+
 
 const server = http.createServer()
 
 server.on('request', async (req, res) => {
     let {url, method} = req
-    console.log(`Received response from ${req.socket.localAddress}:${res.socket.localPort}\n url: ${url}`)
+    console.log(`Received response from ${req.socket.localAddress}:${req.socket.localPort}\n url: ${url}`)
     const handler = api[url + '/' + method]
     if (!handler){
         res.statusCode = 404
@@ -53,6 +55,7 @@ server.on('request', async (req, res) => {
         res.end("500: Internal Server Error")
     }
 })
+
 server.listen(process.env.WEB_PORT)
 
 console.log(`Server listening on port ${process.env.WEB_PORT}`)
