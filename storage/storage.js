@@ -13,4 +13,4 @@ module.exports = {
 
     checkToken: token => users_data.every(user => user.token == token)
     // this function returns true if token exists if users_data
-}
+} 
