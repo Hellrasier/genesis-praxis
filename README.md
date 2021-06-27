@@ -6,7 +6,7 @@ Node js api for retrieving information about current Bitcoin rate with user sign
 
 Current Bitcoin currency rate is being taken from https://www.coinapi.io/
 
-## API description
+## API
 
 - ### Signing up
 
@@ -18,6 +18,7 @@ Current Bitcoin currency rate is being taken from https://www.coinapi.io/
     }
   ```
   Query for creating new user. After creating user unque token is generated for this user.
+  Users are saved in `users_data.json`
 
   Possible responses:
   + `201: Created user with E-mail: example@mail.com` 
@@ -53,5 +54,13 @@ Current Bitcoin currency rate is being taken from https://www.coinapi.io/
   Possible responses:
   + `200: {cryptoCurrency: "BTC", rate: *BTC rate in UAH*}`
   + `401: Error, user is unauthorized` - if token is invalid or does not exist
+
+## Aplication structure
+  - `index.js` - main file with server
+  - `api`- server api
+    + `api.js` - main api module with endpoints
+    + `cryptoCurrency.js` - module with https response to https://www.coinapi.io/
+    +  `security.js` - module with functions that create token, hash passwords and verify passwords 
+  - `storage`- storage that emulates database. Data is saved in users_data.json, storage api is written in storage/storage.js
   
 
