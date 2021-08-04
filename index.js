@@ -53,11 +53,17 @@ server.on('request', async (req, res) => {
         res.end("500: Internal Server Error")
     }
 })
-server.listen(process.env.WEB_PORT)
+server.listen(process.env.WEB_PORT || 3001)
 
 console.log(`Server listening on port ${process.env.WEB_PORT}`)
 
-process.once('SIGINT', () => server.close())
-process.once('SIGTERM', () => server.close())
+process.once('SIGINT', () => {
+	server.close()
+	process.exit(0)
+})
+process.once('SIGTERM', () => {
+	server.close()
+	process.exit(0)
+})
 
 
